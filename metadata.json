@@ -1,0 +1,7 @@
+{
+  "name": "AgriDecision DSS",
+  "description": "An Agricultural Decision Support System for optimal crop selection and profit optimization based on soil, weather, and market data.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

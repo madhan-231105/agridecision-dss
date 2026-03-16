@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "Crop": {
+      "title": "Crop",
+      "description": "Information about specific crops, their requirements, and expected yields.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Common name of the crop" },
+        "type": { "type": "string", "description": "Category (e.g., Cereal, Vegetable, Fruit)" },
+        "minPh": { "type": "number", "description": "Minimum soil pH required" },
+        "maxPh": { "type": "number", "description": "Maximum soil pH required" },
+        "waterRequirement": { "type": "string", "description": "Low, Medium, High" },
+        "growingSeason": { "type": "string", "description": "Kharif, Rabi, Zaid" },
+        "avgYieldPerAcre": { "type": "number", "description": "Average yield in kg" },
+        "avgCostPerAcre": { "type": "number", "description": "Estimated cost of cultivation" }
+      },
+      "required": ["name", "type", "minPh", "maxPh"]
+    },
+    "SoilAnalysis": {
+      "title": "Soil Analysis",
+      "description": "User's soil test results.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "UID of the user" },
+        "ph": { "type": "number", "description": "Soil pH level" },
+        "nitrogen": { "type": "number", "description": "Nitrogen content (ppm)" },
+        "phosphorus": { "type": "number", "description": "Phosphorus content (ppm)" },
+        "potassium": { "type": "number", "description": "Potassium content (ppm)" },
+        "moisture": { "type": "number", "description": "Current moisture percentage" },
+        "timestamp": { "type": "timestamp", "description": "Server timestamp of the record" }
+      },
+      "required": ["userId", "ph", "timestamp"]
+    },
+    "MarketData": {
+      "title": "Market Data",
+      "description": "Current market prices for crops.",
+      "type": "object",
+      "properties": {
+        "cropName": { "type": "string" },
+        "pricePerKg": { "type": "number" },
+        "region": { "type": "string" },
+        "date": { "type": "string", "format": "date" }
+      },
+      "required": ["cropName", "pricePerKg", "date"]
+    }
+  },
+  "firestore": {
+    "/crops/{cropId}": {
+      "schema": "Crop",
+      "description": "Master list of crops"
+    },
+    "/soil_analyses/{analysisId}": {
+      "schema": "SoilAnalysis",
+      "description": "User soil test records"
+    },
+    "/market_prices/{priceId}": {
+      "schema": "MarketData",
+      "description": "Historical and current market prices"
+    }
+  }
+}
